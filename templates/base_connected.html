@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+      <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+      <link rel="icon" href="http://X.X.X.X:81/static/img/favicon.ico"  type="image/x-icon">
+      <link href="http://X.X.X.X:81/static/css/component.css" rel="stylesheet">
+      <link href="http://X.X.X.X:81/static/css/bootstrap.min.css" rel="stylesheet">
+      <link href="http://X.X.X.X:81/static/css/bootstrap-theme.min.css" rel="stylesheet">
+      <link href="http://X.X.X.X:81/static/css/layout.css" rel="stylesheet">
+      <link href="http://X.X.X.X:81/static/css/style.css" rel="stylesheet">
+      <link href="http://X.X.X.X:81/static/css/video.css" rel="stylesheet">
+
+      <script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/jquery.js"> </script>
+      <script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/jquery-ui.js"> </script>
+      <script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/jquery.hotkeys.js"> </script>
+      <script type="text/javascript" src="http://X.X.X.X:81/static/js/bootstrap.min.js"> </script>
+
+    </head>
+
+    <body background="http://X.X.X.X:81/static/img/fond.jpg">
+
+        <nav>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/authentification/">Authot</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li id="collection_nav" class="active"><a href="/authentification/collection">Collection</a></li>
+                        {% if user.groups.all.0.name == 'validateur' %}
+                        <li id="ad_document_nav"><a href="/authentification/newDocument">Add document</a></li>
+                        {% endif %}
+                        <li id="dashboard_nav"><a href="/authentification/dashboard">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a> Bonjour {{ user }},</a></li>
+                        <li><a href="/authentification/logout"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </nav>
+
+        <section id="content">
+        {% block content %}{% endblock %}
+        </section>
+        <!-- <footer>&copy; Authot</footer> -->
+    </body>
+</html>

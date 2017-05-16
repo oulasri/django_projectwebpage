@@ -1,0 +1,75 @@
+{% extends "base_connected.html" %}
+{% block content %}
+
+
+<div class="container">
+	</br>
+	<div class="bs-callout bs-callout-primary">
+		<div class="row">
+			<div class="col-lg-5">
+				<h4>Modification du mot de passe</h4>
+			</div>
+		</div>
+		</br>
+		{% if error %}
+			<div class="alert alert-danger" role="alert">Corrigez les erreurs ci-dessous.</div>
+		{% elif password_changed%}
+			<div class="alert alert-success" role="alert">Votre mot de passe a été modifié.</div>
+		{% endif %}
+		</br>	
+		Pour des raisons de sécurité, saisissez votre ancien mot de passe puis votre nouveau mot de passe à deux reprises afin de vérifier qu'il est correctement saisi.
+		</br>
+		</br>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div>
+				<fieldset class="fieldset_form">
+					<div class="row_form">
+						{% if bad_password %}
+							<p class="avert_password">Votre ancien mot de passe est incorrect. Veuillez le rectifier.</p>
+						{% endif %}
+						<label class="label_password">Ancien mot de passe:</label>
+						<input type="password" name="old_password" id="id_old_password" autofocus="">
+					</div>
+					<div class="row_form">
+						<label class="label_password">Nouveau mot de passe:</label>
+						<input type="password" name="new_password" id="id_new_password">
+						<ul class="ul_help_password">
+							<li>Votre mot de passe ne peut pas trop ressembler à vos autres informations personnelles.</li>
+							<li>Votre mot de passe doit contenir au minimum 8 caractères.</li>
+							<li>Votre mot de passe ne peut pas être un mot de passe couramment utilisé.</li>
+							<li>Votre mot de passe ne peut pas être entièrement numérique.</li>
+						</ul>
+					</div>
+					<div class="row_form">
+						{% if not_same_password %}
+							<p class="avert_password">Les deux mots de passe ne correspondent pas.</p>
+						{% elif error_list %}
+							{% for error in error_list%}
+								<p class="avert_password">{{error}}</p>
+							{% endfor %}
+						{% endif %}
+						<label class="label_password">Confirmation du nouveau mot de passe:</label>
+						<input type="password" name="new_password_confirm" id="id_new_password_confirm">
+					</div>
+				</fieldset>
+				<div class="submit-row">
+					<input type="submit" class="default" value="modifier mon mot de passe">
+				</div>
+			</div>
+		</form>
+		
+	</div>
+</div>
+<script type="text/javascript">
+	$("li.active").removeClass('active');
+	$("#dashboard_nav").addClass('active');
+</script>
+{% endblock %}
+
+
+
+
+
+
+

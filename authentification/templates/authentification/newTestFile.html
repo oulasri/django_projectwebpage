@@ -1,0 +1,32 @@
+{% extends "base_connected.html" %}
+{% block content %}
+
+
+</br>
+</br>
+</br>
+</br>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-5" style="float: none; display: block; margin: 0 auto;">
+
+			{% if error_fichier_wav %}
+				<p><strong>Renseignez le fichier .wav si vous souhaitez transcrire un fichier video</strong></p>
+			{% endif %}
+			<form method="post" action="./test" enctype="multipart/form-data">
+				<div class="panel panel-default">
+					<table class="table">
+					    {% csrf_token %}
+					    {{ form.as_table }}
+					    <tr>
+			    			<td></td>
+			    			<td><input type="submit" value="Enregistrer" /></td>
+			    		</tr>
+			    	</table>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

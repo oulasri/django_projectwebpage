@@ -1,0 +1,286 @@
+
+{% extends "base_connected.html" %}
+{% load staticfiles %}
+{% load l10n %}
+{% block content %}
+
+<div class="container">
+	<div class="row" id="information"></div>
+	<!-- WAVEFORM -->
+	<div class="row">
+		<div id="waveform_wf" waveformFile="http://X.X.X.X:81{{wf_file}}" style="height: 200px"></div>
+	</div>
+	</br>
+
+	<div class="row">
+		<div class="col-md-4">
+			<!-- VIDEO PLAYER -->
+			<div class="row">
+				{% if type_fichier == "video" %}
+				<video id="video_player" controls preload="none"
+				  class="video-js vjs-default-skin"
+				  width="387"
+				  height="320" 
+				  data-setup=''>
+					<source src="http://X.X.X.X:81/{{ chemin_fichier }}" type="video/mp4" /> 
+				{% else %}
+				<video id="video_player" controls preload="none"
+				  width="387"
+				  height="100"
+				  data-setup=''
+ 				  class="video-js vjs-default-skin">
+					<source src="http://X.X.X.X:81/{{ chemin_fichier }}" type="video/mp4" /> 
+				{% endif %}
+					<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+				</video>
+				{% if type_fichier == "video" %}
+				<div id="sous-titres_flottant" align="center" class="video_subtitle"></div>
+				{% else %}
+				<div id="sous-titres_flottant" align="center" class="audio_subtitle"></div>
+				{% endif %}
+			</div>
+			</br>
+
+			<!-- Video player tools  -->
+			<div class="row text-center">
+					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+						<div class="btn-group mr-2" role="group" aria-label="First group">
+							<button type="button" class="btn btn-secondary button_video" onclick="fastBackward();">
+								<span class="glyphicon glyphicon-fast-backward"></span>
+							</button>
+							<button type="button" class="btn btn-secondary button_video" onclick="backward();">
+								<span class="glyphicon glyphicon-backward"></span>
+							</button>
+						</div>
+						<div class="btn-group mr-2" role="group" aria-label="Second group">
+							<button type="button" class="btn btn-secondary button_video" onclick="videoPause();">
+								<span class="glyphicon glyphicon-pause"></span>
+							</button>
+							<button type="button" class="btn btn-secondary button_video" onclick="videoPlay();">
+								<span class="glyphicon glyphicon-play"></span>
+							</button>
+							<button type="button" class="btn btn-secondary button_video" onclick="repeat();">
+								<span class="glyphicon glyphicon-repeat"></span>
+							</button>
+						</div>
+						<div class="btn-group" role="group" aria-label="Third group">
+							<button type="button" class="btn btn-secondary button_video" onclick="forward();">
+								<span class="glyphicon glyphicon-forward"></span>
+							</button>
+							<button type="button" class="btn btn-secondary button_video" onclick="fastForward();">
+								<span class="glyphicon glyphicon-fast-forward"></span>
+							</button>
+						</div>
+					</div>
+			</div>
+			
+
+			</br>
+			<div class="row">
+				<!-- Informations -->
+				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+					<li class="active"><a href="#resume" data-toggle="tab">Resumé</a></li>
+					<li><a href="#lexique" data-toggle="tab">Lexique</a></li>
+					<li><a href="#raccourci" data-toggle="tab">Raccourci</a></li>
+					<li><a href="#evenement" data-toggle="tab">Événement</a></li>
+				</ul>
+				<div id="my-tab-content" class="tab-content">
+					<!-- resume du document -->
+					<div class="tab-pane active" id="resume">
+						<div class="panel panel-default">
+							<div class="panel-body">
+
+								<h3>Pourcentage du document fini : </h3>
+								<div class="progress">
+									<div id="pourcentage" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+										0%
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- lexique du document -->
+					<div class="tab-pane" id="lexique">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								
+							</div>
+						</div>
+					</div>
+					<!-- raccourci du document -->
+					<div class="tab-pane" id="raccourci">
+						<div class="panel panel-default">
+							<table class="table">
+								<tr>
+									<td>Ctrl + Space</td>
+									<td>Play/pause video</td>
+								</tr>
+								<tr>
+									<td>Ctrl + Return</td>
+									<td>Séparer une phrase en deux</td>
+								</tr>
+								<tr>
+									<td>Simple click</td>
+									<td>Editer la phrase</td>
+								</tr>
+								<tr>
+									<td>Double click</td>
+									<td>Focus sur la phrase</td>
+								</tr>
+								<tr>
+									<td>Tab</td>
+									<td>Editer la phrase suivante</td>
+								</tr>
+								<tr>
+									<td>Shift + Tab</td>
+									<td>Editer la phrase précédente</td>
+								</tr>
+								<tr>
+									<td>Ctrl + i</td>
+									<td>Insérer une nouvelle phrase après la phrase courante</td>
+								</tr>
+								<tr>
+									<td>Ctrl + d</td>
+									<td>Supprimer la phrase courante (cooming soon)</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- evenement du document -->
+					<div class="tab-pane" id="evenement">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div id="user_event" class="event_area"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-7">
+			<!-- SOUS TITRES -->
+			<div id="div_sentences" class="list-group container_sentences">
+				{% if collection_view %}
+					{% for sentence in sentences %}
+						<div 
+						id='sentence_{{sentence.start_time|unlocalize}}' 
+						class="input-group" 
+						timeStart='{{sentence.start_time|unlocalize}}' 
+						timeEnd='{{sentence.end_time|unlocalize}}'
+						sentence_id='{{ sentence.id }}'>
+							<span class="input-group-addon" id="sizing-addon3" style="position: relative;">
+								<div style="top: 6px;"></div>
+								</br>
+								<select id="locuteur_select_{{ sentence.id }}" class="select_locuteur">
+									<option value="{{sentence.locuteur.id}}">{{sentence.locuteur}}</option>
+									{% for locuteur in locuteurs %}
+										{% if locuteur != sentence.locuteur %}
+										<option value="{{locuteur.id}}">{{locuteur}}</option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</span>
+							<div class="merge_transcription">
+								<span
+								id='merge_sentence_{{sentence.start_time|unlocalize}}'
+								class="glyphicon glyphicon-resize-vertical"
+								style="cursor: pointer;"
+                                                                tabindex="0"></span>
+							</div>
+							<div class="play_transcription" style="visibility: hidden;">
+								<a id='play_sentence_{{sentence.start_time|unlocalize}}'>
+									<span class="glyphicon glyphicon-warning-sign" style="cursor: pointer;"></span>
+								</a>
+							</div>
+							{% if sentence.validated %}
+							<input 
+							type="checkbox" 
+							class="valid_transcription" 
+							id='valid_sentence_{{sentence.start_time|unlocalize}}' checked>
+							{% else %}
+							<input 
+							type="checkbox" 
+							class="valid_transcription" 
+							id='valid_sentence_{{sentence.start_time|unlocalize}}'>
+							{% endif %}
+							<textarea 
+								class="textarea_basic" 
+								timeStart='{{sentence.start_time|unlocalize}}'
+								timeEnd='{{sentence.end_time|unlocalize}}'
+								ondblclick="focusSentence(this);">{{sentence.valeur}}</textarea>
+						</div>
+					{% endfor %}
+				{% else %}
+					{% for tstart, tend, sent in zipped %}
+						<div id="sentence_{{tstart}}" class="input-group" timeStart="{{tstart}}" timeEnd="{{tend}}">
+							<span class="input-group-addon" id="sizing-addon3"></span>
+							<div class="merge_transcription">
+								<span id="merge_sentence_{{tstart}}" 
+								class="glyphicon glyphicon-resize-vertical"
+								style="cursor: pointer;"></span>
+							</div>
+							<div class="play_transcription" style="visibility: hidden;">
+								<a id="play_sentence_{{tstart}}">
+									<span class="glyphicon glyphicon-warning-sign" style="cursor: pointer;"></span>
+								</a>
+							</div>
+							<input type="checkbox" class="valid_transcription" id="valid_sentence_{{tstart}}">
+							<textarea 
+								class="textarea_basic" 
+								timeStart="{{tstart}}"
+								timeEnd="{{tend}}"
+								ondblclick="focusSentence(this);">{{sent}}</textarea>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	window.userId = {{ user.id }};
+	{% if collection_view %}
+		window.documentView = true;
+	{% else %}
+		window.documentView = false;
+	{% endif %}
+</script>
+
+
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/video.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/outwave.min.js"> </script>
+
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/utils.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/time-span-error.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/draggable.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/time-span.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/continuous-time-span.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/time-span-collection.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/sparse-time-span.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/lib/outwave/time-span/sparse-time-span-collection.js"> </script>
+
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/document_functions.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/socket_reception.js"> </script>
+<script type="text/javascript" src="http://X.X.X.X:81/static/js/shortcuts.js"> </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

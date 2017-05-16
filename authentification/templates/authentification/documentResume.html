@@ -1,0 +1,175 @@
+{% extends "base_connected.html" %}
+{% load staticfiles %}
+{% load l10n %}
+{% block content %}
+
+
+<div class="container">
+	</br>
+
+
+	<div class="bs-callout bs-callout-default">
+		<div class="row">
+			<div class="col-lg-5">
+				<h4>Document {{document.titre}}</h4>
+			</div>
+			<div class="col-lg-2" style="float: right;">
+				<button type="button" class="btn btn-danger" style="float: right;" onclick="validationDocument();">Valider le document</button>
+			</div>
+			<div class="col-lg-5" style="float: right;">
+				<button type="button" class="btn btn-success" style="float: right;" onclick="postCorrecteur();">Enregistrer et continuer les modifications</button>
+			</div>
+		</div>
+	</div>
+	</br>
+	<div class="bs-callout bs-callout-primary">
+		<h4>les utilisateurs autorisés à modifier le document</h4>
+		</br>
+		<div class="row">
+			<div class="col-lg-5">
+				<div class="panel panel-default">
+					<div class="panel-heading">correcteurs disponible(s)
+					</div>
+					<div id="users_out" class="list-group">
+						{% for current_user in all_users %}
+							{% if not current_user in correcteurs %}
+								<button id="{{current_user.id}}" class="list-group-item" onclick="addCorrecteur({{current_user.id}}, '{{current_user}}')">{{current_user}}</button>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="double_row">
+				<span class="glyphicon glyphicon-resize-horizontal"></span>
+			</div>
+			<div class="col-lg-5">
+				<div class="panel panel-default">
+					<div class="panel-heading">choix des "correcteurs"</div>
+					<div id="users_in" class="list-group">
+						{% for current_correcteur in correcteurs %}
+							<button id="{{current_correcteur.id}}" class="list-group-item" onclick="removeCorrecteur({{current_correcteur.id}}, '{{current_correcteur}}')">{{current_correcteur}}</button>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="bs-callout bs-callout-primary">
+		<h4>Informations</h4>
+		<div class="row">
+			<div class="col-lg-5">
+				<h3>Pourcentage du document fini : </h3>
+				<div class="progress" style="width: 100%;">
+					<div id="pourcentage" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{pourcentage}}%;">
+						{{pourcentage}}%
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<button type="button" class="btn btn-primary" style="float: right;" onclick="window.location='/authentification/document/{{document.id}}';return false">Editer le document en tant que correcteur</button>
+			</div>
+		</div>
+	</div>
+
+        <div class="bs-callout bs-callout-success">
+                <h4>Générer .srt</h4>
+                <div class="row">
+                        </br>
+                        <div class="col-lg-7">
+                                <button type="button" class="btn btn-success" onclick="window.location='/authentification/document/srt/{{document.id}}';return false">Générer le fichier .srt</button>
+                        </div>
+                </div>
+        </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+	{% if generationSrt %}
+		window.location = "http://X.X.X.X:81/static/data/{{srt_name}}"; 
+	{% endif %}
+
+	function addCorrecteur(id, name){
+		$("#" + id).remove();
+		$("#users_in").append("<button id="+id+" class='list-group-item' onclick='removeCorrecteur("+id+",\""+name+"\")'>"+name+"</button>");
+	}
+
+	function removeCorrecteur(id, name){
+		$("#" + id).remove();
+		$("#users_out").append("<button id="+id+" class='list-group-item' onclick='addCorrecteur("+id+",\""+name+"\")'>"+name+"</button>");
+	}
+
+	// get csrf token in cookie
+	function getCookie(name) {
+		var cookieValue = null;
+		if (document.cookie && document.cookie != '') {
+			var cookies = document.cookie.split(';');
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = jQuery.trim(cookies[i]);
+				if (cookie.substring(0, name.length + 1) == (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+
+
+	function postCorrecteur(){
+		var other_users = [];
+		var correcteurs_selected = [];
+
+		$("#users_out").children().each(function(){
+			other_users.push($(this).attr("id"));
+		});
+
+		$("#users_in").children().each(function(){
+			correcteurs_selected.push($(this).attr("id"));
+		});
+
+		$.ajaxSetup({
+			headers: { "X-CSRFToken": getCookie("csrftoken") }
+		});
+
+
+        $.ajax({
+			type:"POST",
+			url:"/authentification/document/addCorrecteur/{{document.id}}",
+			dataType: "json",
+			data: {
+			'correcteurs': JSON.stringify(correcteurs_selected),
+			'others': JSON.stringify(other_users)
+			}
+		});
+	}
+
+	function validationDocument(){
+		if (confirm("Attention !! Valider le document signifie que les correcteurs ont terminés le travail et que le validateur l'a validé.")) {
+			window.location='/authentification/document/validate/{{document.id}}';
+		return false;
+		} 
+	}
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

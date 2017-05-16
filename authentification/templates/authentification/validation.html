@@ -1,0 +1,10 @@
+{% extends "base_disconnected.html" %}
+{% block content %}
+
+
+<div class="container">
+	Bonjour {{ user_to_activate.username }}, votre est maintenant valide.
+	</br>
+	<a href="/authentification/login">Se connecter</a>
+</div>
+{% endblock %}
