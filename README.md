@@ -1,4 +1,4 @@
-Created by `Rachid Oulasri <https://www.linkedin.com/in/rachid-oulasri/`_
+Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 
 # Interface d'édition de sous-titre collaboratif
 
