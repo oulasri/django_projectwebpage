@@ -210,6 +210,13 @@ sudo python manage.py runworker
 
 Vous pouvez lancer un naviguateur sur l'adresse IP de votre serveur et vous connecter avec le compte super-administrateur que vous venez de créer.
 
+
+## Utilisation
+Pour utiliser l'interface, il faut upload votre fichier audio ou video et le fichier xml de contenue dans le répertoire `~/django_projectwabpage/static/data/`. [FileZilla](https://filezilla-project.org/) est une manière simple de procéder à cette étape.
+
+
+
+
 ## License
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE.md](LICENSE.md) file for details
