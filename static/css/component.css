@@ -1,0 +1,300 @@
+.video_subtitle { 	
+	background-color: black; 
+	max-width: 400px; 
+	color: white; 	
+	font-size: 12px;     
+	position: absolute;
+	left: 50px;
+	top: 300px;
+}
+
+
+.button_video {
+	background-color: #F8F8FF;
+}
+
+
+.select_locuteur {
+	bottom: 6px; 
+	right: 10px; 
+	position: absolute; 
+	width: 70px !important;
+}
+
+.avert_password {
+	margin-top: 0;
+	font-size: 13px;
+	display: block;
+	margin-bottom: 4px;
+	padding: 1px 0;
+	color: #ba2121;
+	font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+
+.submit-row {
+	padding: 12px 14px;
+	margin: 0 0 20px;
+	background: #f8f8f8;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	text-align: right;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.default{
+	margin: 0 0 0 8px;
+	text-transform: uppercase;
+	float: right;
+	border: none;
+	font-weight: 400;
+	background: #417690;
+	height: 35px;
+	line-height: 15px;
+	padding: 10px 15px;
+	border-radius: 4px;
+	color: #fff;
+	cursor: pointer;
+	vertical-align: middle;
+	font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.ul_help_password {
+	margin-left: 160px !important;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: .2em 0 .8em 0;
+	color: #333;
+	font-size: 13px;
+	font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+
+.ul_help_password > li{
+	list-style: none;
+	padding: 1px 0;
+	line-height: 20px;
+	font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+	color: #333;
+}
+
+.fieldset_form {
+	border: none;
+	margin-bottom: 30px;
+	padding: 0;
+	margin: 0;
+}
+
+
+.row_form {
+	overflow: hidden;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.label_password {
+	display: inline-block;
+	vertical-align: middle;
+	width: 250px;
+}
+
+
+.double_row {
+	float: left;
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: white;
+}
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-left-color: #777;
+}
+.bs-callout-default h4 {
+    color: #777;
+}
+.bs-callout-primary {
+    border-left-color: #428bca;
+}
+.bs-callout-primary h4 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-left-color: #5cb85c;
+}
+.bs-callout-success h4 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout-info h4 {
+    color: #5bc0de;
+}
+
+.delete_collection {
+	float: right;
+}
+
+.edit_collection {
+	float: right;
+	right: 5px;
+}
+
+.category_active {
+	background-color: #DCDCDC !important;
+}
+
+.btn_submit_collection {
+	width: 100%;
+	height: 30px;
+	text-align: center;
+}
+
+.input_submit_collection {
+	width: 100%;
+}
+
+.audio_subtitle { 	
+	background-color: black; 
+	max-width: 400px; 
+	color: white; 	
+	font-size: 12px;     
+	position: absolute;
+	left: 50px;
+	top: 10px;
+}
+
+.panel_heading_position {
+	position: relative;
+}
+
+.btn_open_xml {
+	right: 10px;
+	bottom: 5px;
+	position: absolute;
+}
+
+.creation_compte {
+	display: table; 
+	margin: 0 auto;
+}
+
+.thumbnail_title {
+	text-align: center;
+}
+
+.thumbnail:hover{
+	box-shadow: 2px 2px 5px #888888;
+}
+
+.col_thumbnail {
+	visibility: visible;
+}
+
+.col-centered {
+    float: none;
+    display: block;
+    margin: 0 auto;
+}
+
+.event_area{
+	max-height: 200px !important;
+	overflow-y: scroll;
+}
+
+.textarea_basic {
+	background-color: ;
+	height: 60px;
+	width: 100%;
+	resize: none;
+}
+
+.textarea_not_editable {
+	background-color: #DCDCDC !important;
+}
+
+.textarea_selected {
+	background-color: #E6E6FA;
+	height: 90px;
+	width: 100%;
+	resize: none;
+}
+
+.container_sentences{
+	overflow-y: scroll;
+	width: 800px;
+	max-height: 10px;
+}
+
+.container_video_player {
+	position: relative;
+}
+
+.row_video_player {
+	width: 90%; 
+	margin: 0 auto;
+}
+
+.outwave_timespan_selected{
+    background-color: rgba(40,120,255,0.3) !important;     
+    box-shadow: 0 0 4px #aaa;
+}
+
+.merge_transcription { 	
+	position: absolute;     
+	bottom: -10px;     
+	left: 0px; 
+	z-index: 1;
+}
+
+
+.play_transcription {
+	position: absolute;     
+	bottom: 5px;
+	right: 50px;
+	z-index: 1;
+}
+
+.valid_transcription {
+	position: absolute;     
+	bottom: 5px;     
+	right: 6px; 
+	z-index: 1;
+	width: 20px !important;
+	height: 20px !important;
+}
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
