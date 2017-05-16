@@ -23,13 +23,30 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
   manage.py
 ```
 
-L'interface d'édition utilise le travail [Open-Source](https://github.com/vdot/outwave.js) pour manipuler le flux d'un signal audio sur un nabiguateur.
+L'interface d'édition utilise le travail Open-Source de [vdot](https://github.com/vdot/outwave.js) pour manipuler le flux d'un signal audio sur un naviguateur.
 Il faut donc donner les droits à notre application d'éxécuter la librairie qui génère ce flux audio.
 ```
 chmod +x ~/django_projectwebpage/static/c/outwave
 ```
   
-2. Two
+2. Installer les dépendances
+Pour commencer nous allons installer Django avec la commande suivante. Il faut noter que pour cette phase d'installation nous allons avoir besoin de l'outil [pip](https://pypi.python.org/pypi/pip) qui gère les packages Python.
+```
+pip install django
+```
+Nous allons maintenant installer [Redis](https://redis.io/topics/quickstart) qui a pour but de stocker des valeurs associées à des clés. Django et Celery vont utiliser Redis afin de créer un Hash Map pour faciliter les traitements et viter de stocker les informations en dur dans la base de données.
+```
+pip install redis
+apt-get install -y tcl
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+make test
+sudo cp src/redis-server /usr/local/bin/
+sudo cp src/redis-cli /usr/local/bin/
+```
+
 3. Three
 4. 
 5. Three
