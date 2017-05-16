@@ -119,6 +119,47 @@ CORS_ORIGIN_WHITELIST = [
     'X.X.X.X:80',
     'X.X.X.X:81',
 ```
-5. 
+5. Installation de NGinx
+Le framework Django ne permet pas de servir les fichiers static en production par soucis de sécurité. Il faut donc faire appel à un serveur de fichier, ici nous utiliserons [Nginx](https://www.nginx.com/).
+```
+sudo apt-get install nginx
+```
+Après l'installation, il faut modifier le fichier `/etc/nginx/sites-available/default`. Modifier `X.X.X.X` par l'adresse IP de votre serveur.
+```
+server {
+	listen 81 default_server;
+	listen [::]:81 default_server;
+
+            root /usr/share/nginx/www;
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name X.X.X.X;
+
+    location / {
+            if ($request_method = 'OPTIONS') {
+                 add_header 'Access-Control-Allow-Origin' '*';
+                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                    add_header 'Access-Control-Max-Age' 1728000;
+                    add_header 'Content-Type' 'text/plain charset=UTF-8';
+                    add_header 'Content-Length' 0;
+                    return 204;
+            }
+            if ($request_method = 'POST') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                    add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+            }
+            if ($request_method = 'GET') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                    add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+            }
+    }
+}
+```
+
 6. 
 7. 
