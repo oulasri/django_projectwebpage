@@ -186,10 +186,13 @@ Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afi
 
 
 ### 7. Lancer le serveur
-Je vous recommande dans cette partie d'utiliser [Tmux](https://doc.ubuntu-fr.org/tmux) afin de visualiser les différents serveur lancé pour mettre en place l'application. Se rendre dans le répertoire courant de l'application.
+Créer un compte superAdmin
 ```
 cd ~/django_projectwebpage/
+python manage.py createsuperuser
 ```
+Je vous recommande dans cette partie d'utiliser [Tmux](https://doc.ubuntu-fr.org/tmux) afin de visualiser les différents serveur lancé pour mettre en place l'application.
+
 Tout d'abord, il faut lancer le serveur Redis qui va permettre à Celery et le serveur Django de stocker des données de manière rapide et robuste sans passer par la base de données
 ```
 redis-server
