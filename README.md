@@ -130,35 +130,47 @@ server {
 	listen 81 default_server;
 	listen [::]:81 default_server;
 
-            root /usr/share/nginx/www;
+        root /usr/share/nginx/www;
 	index index.html index.htm index.nginx-debian.html;
 
 	server_name X.X.X.X;
 
-    location / {
-            if ($request_method = 'OPTIONS') {
-                 add_header 'Access-Control-Allow-Origin' '*';
-                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                 add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-                 add_header 'Access-Control-Max-Age' 1728000;
-                 add_header 'Content-Type' 'text/plain charset=UTF-8';
-                 add_header 'Content-Length' 0;
-                 return 204;
+        location / {
+              if ($request_method = 'OPTIONS') {
+                   add_header 'Access-Control-Allow-Origin' '*';
+                   add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                   add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                   add_header 'Access-Control-Max-Age' 1728000;
+                   add_header 'Content-Type' 'text/plain charset=UTF-8';
+                   add_header 'Content-Length' 0;
+                   return 204;
+              }
+              if ($request_method = 'POST') {
+                   add_header 'Access-Control-Allow-Origin' '*';
+                   add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                   add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                   add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
             }
-            if ($request_method = 'POST') {
-                 add_header 'Access-Control-Allow-Origin' '*';
-                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                 add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-                 add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-            }
-            if ($request_method = 'GET') {
-                 add_header 'Access-Control-Allow-Origin' '*';
-                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-                 add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-                 add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-            }
-    }
+              if ($request_method = 'GET') {
+                   add_header 'Access-Control-Allow-Origin' '*';
+                   add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                   add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+                   add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+              }
+        }
 }
+```
+Se rendre ensuite dans le répertoire `/usr/share/nginx/` pour créer le lien symbolique suivant
+```
+mkdir www
+cd www
+ln -s ~/django_projectwabpage/static/data/ data  
+ln -s ~/django_projectwabpage/static/ static 
+```
+Pour terminer l'installer de Nginx, tester et lancer le serveur
+```
+sudo nginx -t
+sudo service nginx restart
 ```
 
 6. 
