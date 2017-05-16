@@ -1,6 +1,8 @@
 Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 
-# Interface d'édition de sous-titre collaboratif
+
+Interface d'édition de sous-titre collaboratif
+==============================================
 
 Ce projet Open-Source a pour but de fournir une interface d'édition de sous-titres collaboratif. 
 
@@ -8,4 +10,5 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
 
 
  
-# Installation
+Installation
+============
