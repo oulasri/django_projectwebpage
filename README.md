@@ -13,6 +13,7 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
 # Installation
 
 1. Télécharger les sources
+```
 /django_projectwebpage
   /v0
   /static
@@ -20,6 +21,7 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
   /backend
   /templates
   manage.py
+```
   
 2. Two
 3. Three
