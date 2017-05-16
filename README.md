@@ -101,7 +101,22 @@ python manage.py makemigrations backend
 python manage.py migrate
 ```
 
-4. 
+4. Mettre à jours les informations IP 
+Pour mettre en ligne cette apllication, vous devez bénéficier d'un serveur web. Vous allez donc être propriétaire d'une adresse IP. Vous pouvez tout aussi bien déployer l'application en localhost sur l'adresse 127.0.0.1 mais plusieurs fonctionnalités ne seront pas disponible et pour éditer un document en collaboration vous devrez être sur la même machine physique.
+Tout d'abord, générer une clé secrète sur ce [Lien](http://www.miniwebtool.com/django-secret-key-generator/). Ensuite modifiez le fichier `~/django_projectwebpage/v0/settings.py` et remplacez `X.X.X.X` par l'adresse `IP de votre serveur`:
+```
+ALLOWED_HOSTS = [   'localhost',
+                    '127.0.0.1',
+                    '127.0.1.1',
+                    'X.X.X.X', ]
+ADMINS = (
+    ('<admin_name>', '<admin_mail_adresse>'),
+)
+
+CORS_ORIGIN_WHITELIST = [
+    'X.X.X.X:80',
+    'X.X.X.X:81',
+```
 5. 
 6. 
 7. 
