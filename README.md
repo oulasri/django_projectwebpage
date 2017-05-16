@@ -173,5 +173,16 @@ sudo nginx -t
 sudo service nginx restart
 ```
 
-6. 
+6. Mise à jour des fichiers statics
+Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afin de servir les bon fichier statique. Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants.
+```
+/templates/base_connected.html
+/templates/base_disconnected.html
+/authentification/templates/authentification/collection.html
+/authentification/templates/authentification/document.html
+/authentification/templates/authentification/documentResume.html
+```
+
+
+
 7. 
