@@ -22,6 +22,12 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
   /templates
   manage.py
 ```
+
+L'interface d'édition utilise le travail [Open-Source](https://github.com/vdot/outwave.js) pour manipuler le flux d'un signal audio sur un nabiguateur.
+Il faut donc donner les droits à notre application d'éxécuter la librairie qui génère ce flux audio.
+```
+chmod +x ~/django_projectwebpage/static/c/outwave
+```
   
 2. Two
 3. Three
