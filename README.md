@@ -185,4 +185,25 @@ Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afi
 
 
 
-7. 
+7. Lancer le serveur
+Je vous recommande dans cette partie d'utiliser [Tmux](https://doc.ubuntu-fr.org/tmux) afin de visualiser les différents serveur lancé pour mettre en place l'application. Se rendre dans le répertoire courant de l'application.
+```
+cd ~/django_projectwebpage/
+```
+Tout d'abord, il faut lancer le serveur Redis qui va permettre à Celery et le serveur Django de stocker des données de manière rapide et robuste sans passer par la base de données
+```
+redis-server
+```
+Ensuite, il faut lancer le serveur Celery qui va permettre à notre application de lancer des tâches de fond pour alléger le travail du serveur Django (exemple: remplir la base de données des documents et de leurs sous-titres).
+```
+celery -A v0 worker -l info
+```
+
+Vous pouvez ensuite lancer le serveur Django
+```
+sudo daphne v0.asgi:channel_layer --port 80 --bind 0.0.0.0
+sudo python manage.py runworker
+```
+
+
+
