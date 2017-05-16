@@ -79,7 +79,7 @@ psql
 GRANT ALL PRIVILEGES ON DATABASE <database_name> TO <user_name>;
 ```
 
-Il faut maintenant changer le fichier ~/django_projectwebpage/v0/settings.py pour qu'il prenne en compte la base de données de l'on vient de créer
+Il faut maintenant changer le fichier `~/django_projectwebpage/v0/settings.py` pour qu'il prenne en compte la base de données de l'on vient de créer
 ```
 DATABASES = {
     'default': {
@@ -99,7 +99,6 @@ cd ~/django_projectwebpage
 python manage.py makemigrations authentification
 python manage.py makemigrations backend
 python manage.py migrate
-
 ```
 
 4. 
