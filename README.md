@@ -1,1 +1,2 @@
-# django_projectwebpage
+# Interface d'édition de sous-titre collaboratif
+
