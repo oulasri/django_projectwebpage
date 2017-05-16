@@ -73,12 +73,34 @@ sudo apt-get install libsndfile1-dev
 Après avoir installer la base de données [Postgresql](https://www.postgresql.org/), nous devons créer celle-ci sur notre serveur.
 ```
 sudo su - postgres
-createdb `database_name`
-createuser -P `user_name`
+createdb <database_name>
+createuser -P <user_name>
 psql
-GRANT ALL PRIVILEGES ON DATABASE database_name TO user_name;
+GRANT ALL PRIVILEGES ON DATABASE <database_name> TO <user_name>;
 ```
 
+Il faut maintenant changer le fichier ~/django_projectwebpage/v0/settings.py pour qu'il prenne en compte la base de données de l'on vient de créer
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '<database_name>',
+        'USER': '<user_name>',
+        'PASSWORD': '<password>',
+        'HOST': 'localhost',
+        ’PORT': '',
+    }
+}
+```
+
+Nous devons maintenant créer les tables et les migrer dans notre application web Django
+```
+cd ~/django_projectwebpage
+python manage.py makemigrations authentification
+python manage.py makemigrations backend
+python manage.py migrate
+
+```
 
 4. 
 5. 
