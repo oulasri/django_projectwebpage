@@ -179,8 +179,8 @@ MEDIA_URL = '/media/'
 # email configuration
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'authot.acc@gmail.com'
-EMAIL_HOST_PASSWORD = '4uth0t_2016'
-EMAIL_PORT = 587
-SERVER_EMAIL = 'no-reply@authot.com'
+EMAIL_HOST = 'host'
+EMAIL_HOST_USER = 'email@adress'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 000
+SERVER_EMAIL = ''
