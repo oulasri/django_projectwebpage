@@ -40,6 +40,7 @@ MANAGERS = ADMINS
 #permet d'autoriser l'acces au serveur de fichier
 CORS_ORIGIN_WHITELIST = [
     'X.X.X.X:80',
+    'X.X.X.X:81',
 ]
 
 # Application definition
