@@ -1,3 +1,5 @@
+Created by `Rachid Oulasri <https://www.linkedin.com/in/rachid-oulasri/`_
+
 # Interface d'édition de sous-titre collaboratif
 
 Ce projet Open-Source a pour but de fournir une interface d'édition de sous-titres collaboratif. 
