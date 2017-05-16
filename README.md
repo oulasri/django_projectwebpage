@@ -186,7 +186,7 @@ Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afi
 
 
 ### 7. Lancer le serveur
-Créer un compte superAdmin
+Créer un compte super-administrateur 
 ```
 cd ~/django_projectwebpage/
 python manage.py createsuperuser
@@ -197,7 +197,7 @@ Tout d'abord, il faut lancer le serveur Redis qui va permettre à Celery et le s
 ```
 redis-server
 ```
-Ensuite, il faut lancer le serveur Celery qui va permettre à notre application de lancer des tâches de fond pour alléger le travail du serveur Django (exemple: remplir la base de données des documents et de leurs sous-titres).
+Ensuite, il faut lancer le serveur Celery qui va permettre à notre application de lancer des tâches de fond pour alléger le travail du serveur Django (exemple: remplir la base de données des documents et de leurs sous-titres)
 ```
 celery -A v0 worker -l info
 ```
@@ -208,7 +208,7 @@ sudo daphne v0.asgi:channel_layer --port 80 --bind 0.0.0.0
 sudo python manage.py runworker
 ```
 
-
+Vous pouvez lancer un naviguateur sur l'adresse IP de votre serveur et vous connecter avec le compte super-administrateur que vous venez de créer.
 
 ## License
 
