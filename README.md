@@ -105,7 +105,7 @@ CORS_ORIGIN_WHITELIST = [
     'X.X.X.X:81',
 ```
 #### 5. Installation de NGinx
-Le framework Django ne permet pas de servir les fichiers statiques en production par souci de sécurité. Il faut donc faire appel à un serveur de fichier, ici nous utiliserons [Nginx](https://www.nginx.com/).
+Le framework Django ne permet pas de servir les fichiers statiques en production par souci de sécurité. Il faut donc faire appel à un serveur de fichier, ici nous utiliserons [Nginx](http://nginx.org/en/docs/).
 ```
 sudo apt-get install nginx
 ```
