@@ -58,23 +58,6 @@
 							{% with "/static/data/"|add:document.titre|add:".png" as chemin_miniature %}
 							<div id="document_{{document.id}}" class="col-sm-6 col-md-3 col_thumbnail">
 								<div class="thumbnail">
-									{% if user.groups.all.0.name == 'correcteur' %}
-									<a href="/authentification/document/{{document.id}}">
-										{% if document.type_fichier == "video" %}
-											{% if chemin_miniature|image_exist %}
-											<img src = "{{chemin_miniature}}" width="160" height="160">
-											{% else %}
-											<img src = "http://X.X.X.X:81/static/img/video_file.png" width="100" height="100">
-											{% endif %}
-										{% else %}
-											{% if chemin_miniature|image_exist %}
-											<img src = "{{chemin_miniature}}" width="160" height="160">
-											{% else %}
-											<img src = "http://X.X.X.X:81/static/img/audio_file.png" width="100" height="100">
-											{% endif %}
-										{% endif %}
-									</a>
-									{% else %}
 									<a href="/authentification/document/validateurView/{{document.id}}">
 										{% if document.type_fichier == "video" %}
 											{% if chemin_miniature|image_exist %}
@@ -90,7 +73,6 @@
 											{% endif %}
 										{% endif %}
 									</a>
-									{% endif %}
 									</br>
 									<div class="thumbnail_title">
 										{{document.titre}}
