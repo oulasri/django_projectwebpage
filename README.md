@@ -12,7 +12,7 @@ Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.co
  
 ## Installation
 
-### 1. Télécharger les sources
+#### 1. Télécharger les sources
 ```
 /django_projectwebpage
   /v0
@@ -29,7 +29,7 @@ Il faut donc donner les droits à notre application d'éxécuter la librairie qu
 sudo chmod +x ~/django_projectwebpage/static/c/outwave
 ```
   
-### 2. Installer les dépendances
+#### 2. Installer les dépendances
 Pour commencer nous allons installer Django avec la commande suivante. Il faut noter que pour cette phase d'installation nous allons avoir besoin de l'outil [pip](https://pypi.python.org/pypi/pip) qui gère les packages Python.
 ```
 sudo pip install django
@@ -69,7 +69,7 @@ sudo	pip install asgi_redis
 sudo apt-get install libsndfile1-dev
 ```
 
-### 3. Création de la base de données
+#### 3. Création de la base de données
 Après avoir installer la base de données [Postgresql](https://www.postgresql.org/), nous devons créer celle-ci sur notre serveur.
 ```
 sudo su - postgres
@@ -101,10 +101,10 @@ python manage.py makemigrations backend
 python manage.py migrate
 ```
 
-### 4. Mettre à jours les informations IP 
+#### 4. Mettre à jours les informations IP 
 Pour mettre en ligne cette apllication, vous devez bénéficier d'un serveur web. Vous allez donc être propriétaire d'une adresse IP. Vous pouvez tout aussi bien déployer l'application en localhost sur l'adresse 127.0.0.1 mais plusieurs fonctionnalités ne seront pas disponible et pour éditer un document en collaboration vous devrez être sur la même machine physique.
 Tout d'abord, générer une clé secrète sur ce [Lien](http://www.miniwebtool.com/django-secret-key-generator/). Ensuite modifiez le fichier `~/django_projectwebpage/v0/settings.py` et remplacez `X.X.X.X` par l'adresse `IP de votre serveur`:
-```
+```python
 SECRET_KEY = 'YOUR_SECRET_KEY'
 ...
 ALLOWED_HOSTS = [   'localhost',
@@ -119,7 +119,7 @@ CORS_ORIGIN_WHITELIST = [
     'X.X.X.X:80',
     'X.X.X.X:81',
 ```
-### 5. Installation de NGinx
+#### 5. Installation de NGinx
 Le framework Django ne permet pas de servir les fichiers static en production par soucis de sécurité. Il faut donc faire appel à un serveur de fichier, ici nous utiliserons [Nginx](https://www.nginx.com/).
 ```
 sudo apt-get install nginx
@@ -173,8 +173,8 @@ sudo nginx -t
 sudo service nginx restart
 ```
 
-### 6. Mise à jour des fichiers statics
-Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afin de servir les bon fichier statique. Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants.
+#### 6. Mise à jour de l'importation des fichiers statics
+Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afin de servir les bon fichier statique. De cette manière nous allons donc utiliser le serveur Nginx que nous avons installer pour servir les fichiers statique (css, img, js, ...). Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants. 
 ```
 /templates/base_connected.html
 /templates/base_disconnected.html
@@ -185,7 +185,7 @@ Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afi
 
 
 
-### 7. Lancer le serveur
+#### 7. Lancer le serveur
 Créer un compte super-administrateur 
 ```
 cd ~/django_projectwebpage/
@@ -208,14 +208,25 @@ sudo daphne v0.asgi:channel_layer --port 80 --bind 0.0.0.0
 sudo python manage.py runworker
 ```
 
-Vous pouvez lancer un naviguateur sur l'adresse IP de votre serveur et vous connecter avec le compte super-administrateur que vous venez de créer.
+Nous avons donc 4 processus qui tournent en même temps. Vous pouvez lancer un naviguateur sur l'adresse IP de votre serveur et vous connecter avec le compte super-administrateur que vous venez de créer.
 
 
 ## Utilisation
 Pour utiliser l'interface, il faut upload votre fichier audio ou video et le fichier xml de contenue dans le répertoire `~/django_projectwabpage/static/data/`. [FileZilla](https://filezilla-project.org/) est une manière simple de procéder à cette étape.
 
-
-
+Tout d'abord, le fichier xml contenant les sous-titres doit être de la forme suivante. Les phrases doivent être séparés par des balises `<br/>`<br/> et chaques mot doit renseigner son temps de début et de fin.
+```xml
+<show>
+	<word start="9.11" end="9.28">Hello</word>
+	<word start="9.30" end="9.57">World,</word>
+	<br/>
+	<word start="10.01" end="10.18">my</word>
+	<word start="10.22" end="10.34">name</word>
+	<word start="10.37" end="10.45">is</word>
+	<word start="10.51" end="11.02">RK</word>
+	<br/>
+</show>
+```
 
 ## License
 
