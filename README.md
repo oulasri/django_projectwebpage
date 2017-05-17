@@ -229,7 +229,8 @@ Tout d'abord, le fichier XML contenant les sous-titres doit être sous un format
 Il faut donc upload le fichier audio (wav) ou le fichier vidéo (mp4) ainsi que le fichier contenant les sous-titres (XML) dans le répertoire `~/django_projectwabpage/static/data/` de votre application. **Attention, les deux fichiers doivent avoir le même nom (par exemple : file.mp4 et file.xml)**.
 <br/>
 Pour éditer le document via l'interface web, il faut se rendre sur l'onglet `Add document` et renseigner le type de vidéo ainsi que le nom du fichier (exemple.mp4). `Celery` va alors s'occuper de traiter le parsing du fichier XML et de générer tous les fichiers dont l'interface a besoin pour permettre l'édition du document. Vous pourrez donc éditer le document qui sera présent dans votre page d'accueil.
-
+<br/>
+Vous pouvez créer plusieurs comptes utilisateur via l'interface pour éditer un document en collaboration.
 ## License
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE](LICENSE) file for details
