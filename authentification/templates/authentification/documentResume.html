@@ -16,44 +16,9 @@
 			<div class="col-lg-2" style="float: right;">
 				<button type="button" class="btn btn-danger" style="float: right;" onclick="validationDocument();">Valider le document</button>
 			</div>
-			<div class="col-lg-5" style="float: right;">
-				<button type="button" class="btn btn-success" style="float: right;" onclick="postCorrecteur();">Enregistrer et continuer les modifications</button>
-			</div>
 		</div>
 	</div>
 	</br>
-	<div class="bs-callout bs-callout-primary">
-		<h4>les utilisateurs autorisés à modifier le document</h4>
-		</br>
-		<div class="row">
-			<div class="col-lg-5">
-				<div class="panel panel-default">
-					<div class="panel-heading">correcteurs disponible(s)
-					</div>
-					<div id="users_out" class="list-group">
-						{% for current_user in all_users %}
-							{% if not current_user in correcteurs %}
-								<button id="{{current_user.id}}" class="list-group-item" onclick="addCorrecteur({{current_user.id}}, '{{current_user}}')">{{current_user}}</button>
-							{% endif %}
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-			<div class="double_row">
-				<span class="glyphicon glyphicon-resize-horizontal"></span>
-			</div>
-			<div class="col-lg-5">
-				<div class="panel panel-default">
-					<div class="panel-heading">choix des "correcteurs"</div>
-					<div id="users_in" class="list-group">
-						{% for current_correcteur in correcteurs %}
-							<button id="{{current_correcteur.id}}" class="list-group-item" onclick="removeCorrecteur({{current_correcteur.id}}, '{{current_correcteur}}')">{{current_correcteur}}</button>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<div class="bs-callout bs-callout-primary">
