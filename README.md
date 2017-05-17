@@ -152,13 +152,13 @@ cd www
 ln -s ~/django_projectwabpage/static/data/ data  
 ln -s ~/django_projectwabpage/static/ static 
 ```
-Pour terminer l'installer de Nginx, testez et lancez le serveur
+Pour terminer, testez et lancez le serveur Nginx.
 ```
 sudo nginx -t
 sudo service nginx restart
 ```
 #### 6. Mise à jour de l'importation des fichiers statics
-Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afin de servir les bons fichiers statiques. De cette manière nous allons donc utiliser le serveur Nginx que nous avons installé pour servir les fichiers statiques (css, img, js, ...). Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants. 
+Nous allons utiliser le serveur Nginx que nous avons installé pour servir les fichiers statiques (css, img, js, ...). Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants. 
 ```
 /templates/base_connected.html
 /templates/base_disconnected.html
@@ -174,7 +174,7 @@ ADMINS = (
     ('second_admin_name', 'second_admin_mail_adresse'),
 )
 ```
-Pour que le serveur Django envoie l'erreur par mail, il a besoin d'un serveur smtp. Modifier les variables du serveur SMTP dans le document `~/django_projectwebpage/v0/settings.py`.
+Pour que le serveur Django envoie l'erreur par mail, il a besoin d'un serveur SMTP. Modiifiez les variables du serveur SMTP dans le document `~/django_projectwebpage/v0/settings.py`.
 ```python
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
