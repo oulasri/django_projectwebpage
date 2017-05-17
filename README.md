@@ -24,7 +24,7 @@ Pour commencer nous allons installer Django avec la commande suivante. Il faut n
 ```
 pip install django
 ```
-Nous allons maintenant installer [Redis](https://redis.io/topics/quickstart) qui a pour but de stocker des valeurs associées à des clés. Django et Celery vont utiliser Redis afin de créer un Hash Map pour faciliter les traitements et viter de stocker les informations en dur dans la base de données.
+Nous allons maintenant installer [Redis](https://redis.io/topics/quickstart) qui a pour but de stocker des valeurs associées à des clés. **Django** et **Celery** vont utiliser **Redis** afin de créer un Hash Map pour faciliter les traitements et viter de stocker les informations en dur dans la base de données.
 ```
 pip install redis
 sudo apt-get install -y tcl
@@ -36,7 +36,7 @@ make test
 cp src/redis-server /usr/local/bin/
 cp src/redis-cli /usr/local/bin/
 ```
-Nous allons maintenant installer [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html).
+Nous allons maintenant installer [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html). **Celery** a pour objectif d'éffectuer des taches lourde en arrière plan sur notre serveur. Ainsi le serveur Django pourra déléguer une partie de son travail à **Celery** sans bloquer la file déattente des requête GET et POST.
 ```
 pip install django-celery
 pip install -U Celery
@@ -58,7 +58,7 @@ pip install asgi_redis
 sudo apt-get install libsndfile1-dev
 ```
 #### 3. Création de la base de données
-Après avoir installer la base de données [Postgresql](https://www.postgresql.org/), nous devons créer celle-ci sur notre serveur.
+Après avoir installer la base de données [Postgresql](https://www.postgresql.org/), nous devons créer celle-ci sur notre serveur. Vous pouvez opter pour une base de donnée mongoDB ou autre.
 ```
 sudo su - postgres
 createdb <database_name>
