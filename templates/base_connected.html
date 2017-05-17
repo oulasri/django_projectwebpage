@@ -28,9 +28,7 @@
                     </div>
                     <ul class="nav navbar-nav">
                         <li id="collection_nav" class="active"><a href="/authentification/collection">Collection</a></li>
-                        {% if user.groups.all.0.name == 'validateur' %}
                         <li id="ad_document_nav"><a href="/authentification/newDocument">Add document</a></li>
-                        {% endif %}
                         <li id="dashboard_nav"><a href="/authentification/dashboard">Dashboard</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
