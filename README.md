@@ -7,9 +7,7 @@ Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 Ce projet sous licence [MIT](https://opensource.org/licenses/MIT) a pour but de fournir une interface d'édition de sous-titres collaboratif. 
 
 Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.com/en/1.11/) qui permet de développer des applictions web avec le langage python et html. Elle utilise aussi [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html) et [Redis](https://redis.io/documentation) afin d'éffectuer des taches en arrière plan que nous allons détailler plus tard.
-
-
- 
+</br> 
 ## Installation
 
 #### 1. Télécharger les sources
@@ -214,7 +212,7 @@ Nous avons donc 4 processus qui tournent en même temps. Vous pouvez lancer un n
 ## Utilisation
 Pour utiliser l'interface, il faut upload votre fichier audio ou video et le fichier xml de contenue dans le répertoire `~/django_projectwabpage/static/data/`. [FileZilla](https://filezilla-project.org/) est une manière simple de procéder à cette étape.
 
-Tout d'abord, le fichier xml contenant les sous-titres doit être de la forme suivante. Les phrases doivent être séparés par des balises `<br/>`<br/> et chaques mot doit renseigner son temps de début et de fin.
+Tout d'abord, le fichier xml contenant les sous-titres doit être de la forme suivante. Les phrases doivent être séparés par des balises `<br/>`et chaques mot doit renseigner son temps de début et de fin.
 ```xml
 <show>
 	<word start="9.11" end="9.28">Hello</word>
@@ -227,6 +225,9 @@ Tout d'abord, le fichier xml contenant les sous-titres doit être de la forme su
 	<br/>
 </show>
 ```
+Il faut donc upload le fichier audio (wav) ou le fichier video (mp4) ainsi que le fichier contenant les sous-titres (xml) dans le répertoire `~/django_projectwabpage/static/data/` de votre application. **Attention, les deux fichiers doivent avoir le même nom (exemple.mp4 and exemple.xml)**.
+Pour éditer le document via l'interface web, il faut se rendre sur l'onglet `Add document` et renseigner le type de video ainsi que le nom du fichier (exemple.mp4). `Celery` va alors s'occuper de traiter le parsing du fichier xml et de générer tous les fichiers dont l'interface a besoin pour permettre l'édition du document. Vous pourrez donc éditer le document qui sera présent dans votre page d'accueil.
+<br/>
 
 ## License
 
