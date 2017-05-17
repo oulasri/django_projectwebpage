@@ -232,6 +232,6 @@ Pour éditer le document via l'interface web, il faut se rendre sur l'onglet `Ad
 
 ## License
 
-This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE](LICENSE) file for details
 
 
