@@ -1,16 +1,10 @@
 Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 
-
-
 # Interface d'édition de sous-titre collaboratif
-
 Ce projet sous licence [MIT](https://opensource.org/licenses/MIT) a pour but de fournir une interface d'édition de sous-titres collaboratif. 
 
 Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.com/en/1.11/) qui permet de développer des applictions web avec le langage python et html. Elle utilise aussi [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html) et [Redis](https://redis.io/documentation) afin d'éffectuer des taches en arrière plan que nous allons détailler plus tard.
-<br/>
-<br/>
 ## Installation
-<br/>
 #### 1. Télécharger les sources
 ```
 /django_projectwebpage
@@ -26,7 +20,6 @@ Il faut donc donner les droits à notre application d'éxécuter la librairie qu
 ```
 sudo chmod +x ~/django_projectwebpage/static/c/outwave
 ```
-<br/>
 #### 2. Installer les dépendances
 Pour commencer nous allons installer Django avec la commande suivante. Il faut noter que pour cette phase d'installation nous allons avoir besoin de l'outil [pip](https://pypi.python.org/pypi/pip) qui gère les packages Python.
 ```
@@ -65,7 +58,6 @@ sudo	pip install django-cors-headers
 sudo	pip install asgi_redis
 sudo apt-get install libsndfile1-dev
 ```
-<br/>
 #### 3. Création de la base de données
 Après avoir installer la base de données [Postgresql](https://www.postgresql.org/), nous devons créer celle-ci sur notre serveur.
 ```
@@ -95,7 +87,6 @@ python manage.py makemigrations authentification
 python manage.py makemigrations backend
 python manage.py migrate
 ```
-<br/>
 #### 4. Mettre à jours les informations IP 
 Pour mettre en ligne cette apllication, vous devez bénéficier d'un serveur web. Vous allez donc être propriétaire d'une adresse IP. Vous pouvez tout aussi bien déployer l'application en localhost sur l'adresse 127.0.0.1 mais plusieurs fonctionnalités ne seront pas disponible et pour éditer un document en collaboration vous devrez être sur la même machine physique.
 Tout d'abord, générer une clé secrète sur ce [Lien](http://www.miniwebtool.com/django-secret-key-generator/). Ensuite modifiez le fichier `~/django_projectwebpage/v0/settings.py` et remplacez `X.X.X.X` par l'adresse `IP de votre serveur`:
@@ -114,8 +105,7 @@ CORS_ORIGIN_WHITELIST = [
     'X.X.X.X:80',
     'X.X.X.X:81',
 ```
-<br/>
-#### <br/>5. Installation de NGinx
+#### 5. Installation de NGinx
 Le framework Django ne permet pas de servir les fichiers static en production par soucis de sécurité. Il faut donc faire appel à un serveur de fichier, ici nous utiliserons [Nginx](https://www.nginx.com/).
 ```
 sudo apt-get install nginx
@@ -168,7 +158,6 @@ Pour terminer l'installer de Nginx, tester et lancer le serveur
 sudo nginx -t
 sudo service nginx restart
 ```
-<br/>
 #### 6. Mise à jour de l'importation des fichiers statics
 Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afin de servir les bon fichier statique. De cette manière nous allons donc utiliser le serveur Nginx que nous avons installer pour servir les fichiers statique (css, img, js, ...). Il faut donc remplacer `X.X.X.X` par l'adresse IP de votre serveur dans les fichiers suivants. 
 ```
@@ -178,7 +167,6 @@ Pour terminer cette étape, il suffit de modifier tous les fichiers suivants afi
 /authentification/templates/authentification/document.html
 /authentification/templates/authentification/documentResume.html
 ```
-<br/>
 #### 7. Lancer le serveur
 Créer un compte super-administrateur 
 ```
@@ -195,16 +183,12 @@ Ensuite, il faut lancer le serveur Celery qui va permettre à notre application 
 ```
 celery -A v0 worker -l info
 ```
-
 Vous pouvez ensuite lancer le serveur Django
 ```
 sudo daphne v0.asgi:channel_layer --port 80 --bind 0.0.0.0
 sudo python manage.py runworker
 ```
-
 Nous avons donc 4 processus qui tournent en même temps. Vous pouvez lancer un naviguateur sur l'adresse IP de votre serveur et vous connecter avec le compte super-administrateur que vous venez de créer.
-
-
 ## Utilisation
 Pour utiliser l'interface, il faut upload votre fichier audio ou video et le fichier xml de contenue dans le répertoire `~/django_projectwabpage/static/data/`. [FileZilla](https://filezilla-project.org/) est une manière simple de procéder à cette étape.
 
@@ -222,7 +206,6 @@ Tout d'abord, le fichier xml contenant les sous-titres doit être de la forme su
 </show>
 ```
 Il faut donc upload le fichier audio (wav) ou le fichier video (mp4) ainsi que le fichier contenant les sous-titres (xml) dans le répertoire `~/django_projectwabpage/static/data/` de votre application. **Attention, les deux fichiers doivent avoir le même nom (exemple.mp4 and exemple.xml)**.
-<br/>
 Pour éditer le document via l'interface web, il faut se rendre sur l'onglet `Add document` et renseigner le type de video ainsi que le nom du fichier (exemple.mp4). `Celery` va alors s'occuper de traiter le parsing du fichier xml et de générer tous les fichiers dont l'interface a besoin pour permettre l'édition du document. Vous pourrez donc éditer le document qui sera présent dans votre page d'accueil.
 
 ## License
