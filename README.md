@@ -234,5 +234,10 @@ Vous pouvez créer plusieurs comptes utilisateur via l'interface pour éditer un
 ## License
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE](LICENSE) file for details
-
-
+```
+{
+    "type" : "delete",
+    "user_id" : "1",
+    "sentence_id" : "1",
+}
+```
