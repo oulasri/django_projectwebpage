@@ -1,7 +1,7 @@
 Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 
 # Interface d'édition de sous-titres collaborative
-Ce projet sous licence [MIT](https://opensource.org/licenses/MIT) a pour objet de fournir une interface d'édition de sous-titres collaborative. 
+Ce projet a pour objet de fournir une interface d'édition de sous-titres collaborative. 
 
 Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.com/en/1.11/) qui permet de développer des applications web avec le langage python et HTML. Elle utilise aussi [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html) et [Redis](https://redis.io/documentation) afin d'Effectuer des tâches en arrière-plan que nous allons détailler plus tard.
 ## Installation
@@ -231,6 +231,3 @@ Il faut donc upload le fichier audio (wav) ou le fichier vidéo (mp4) ainsi que 
 Pour éditer le document via l'interface web, il faut se rendre sur l'onglet `Add document` et renseigner le type de vidéo ainsi que le nom du fichier (exemple.mp4). `Celery` va alors s'occuper de traiter le parsing du fichier XML et de générer tous les fichiers dont l'interface a besoin pour permettre l'édition du document. Vous pourrez donc éditer le document qui sera présent dans votre page d'accueil.
 <br/><br/>
 Vous pouvez créer plusieurs comptes utilisateur via l'interface pour éditer un document en collaboration.
-## License
-
-This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License) - see the [LICENSE](LICENSE) file for details
