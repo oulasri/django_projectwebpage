@@ -3,6 +3,9 @@ Created by [Rachid Oulasri](https://www.linkedin.com/in/rachid-oulasri/)
 # Interface d'édition de sous-titres collaborative
 Ce projet a pour objet de fournir une interface d'édition de sous-titres collaborative. 
 
+![screenshot](https://user-images.githubusercontent.com/17120111/28248020-8c7cf62a-6a3c-11e7-88f6-b452056048a2.jpeg)
+
+
 Cette interface s'appuie sur le framework [Django](https://docs.djangoproject.com/en/1.11/) qui permet de développer des applications web avec le langage python et HTML. Elle utilise aussi [Celery](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html) et [Redis](https://redis.io/documentation) afin d'Effectuer des tâches en arrière-plan que nous allons détailler plus tard.
 ## Installation
 #### 1. Télécharger les sources
